@@ -1,0 +1,29 @@
+{
+  "definition": {
+    "fields": [
+      {
+        "hint": "Your name",
+        "required": true,
+        "type": "string",
+        "name": "user_name",
+        "label": "Name"
+      },
+      {
+        "hint": "Your first name",
+        "required": true,
+        "type": "string",
+        "name": "user_firstname",
+        "label": "First name"
+      }
+    ],
+    "description": "A list of my stuff to do",
+    "title": "todo"
+  },
+  "records": [
+    {
+      "item2": "Ipsum",
+      "item1": "Lorem",
+      "id": "dodrituvagi"
+    }
+  ]
+}
