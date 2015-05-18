@@ -8,10 +8,15 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  vendors: [
+    './bower_components/angular-schema-form/dist/*.min.js',
+    './bower_components/objectpath/lib/ObjectPath.js',
+    './bower_components/tv4/tv4.js'
+  ]
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass','vendors']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -26,6 +31,12 @@ gulp.task('sass', function(done) {
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });
+
+gulp.task('vendors', function() {
+  gulp
+    .src(paths.vendors)
+    .pipe(gulp.dest('./www/js/'));
+})
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);

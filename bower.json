@@ -3,5 +3,10 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0"
+  },
+  "dependencies": {
+    "angular-schema-form": "~0.8.2",
+    "objectpath": "~1.1.0",
+    "tv4": "~1.0.17"
   }
 }
