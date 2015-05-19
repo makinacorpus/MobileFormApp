@@ -1,0 +1,20 @@
+[
+	{
+		"key": "name",
+		"placeholder": "Leeroy Jenkins"
+	},
+	{
+		"key": "email",
+		"placeholder": "leeroy@palsforlife.com"
+	},
+	{
+		"key": "comment",
+		"type": "textarea",
+		"placeholder": "At least i have chicken."
+	},
+	{
+		"type": "submit",
+		"style": "btn-info",
+		"title": "Send"
+	}
+]
