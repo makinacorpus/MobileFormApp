@@ -15,4 +15,13 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 			});
 		// Model
 		$scope.model = {};
+		// Submit action
+		$scope.onSubmit = function(form) {
+			$scope.$broadcast('schemaFormValidate');
+			if (form.$valid) {
+				alert('Valid data :)');
+			} else {
+				alert('Invalid data :(');
+			}
+		};
 	});

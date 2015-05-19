@@ -26,7 +26,7 @@
 		</ion-header-bar>
 		<ion-content>
 			<div ng-controller="FormController" class="list">
-					<form sf-schema="schema" sf-form="form" sf-model="model"></form>
+					<form name="myForm" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="onSubmit(myForm)"></form>
 			</div>
 		</ion-content>
 	</body>
