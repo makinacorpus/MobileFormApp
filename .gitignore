@@ -8,7 +8,7 @@ bower_components
 
 www/css/ionic.app.css
 www/css/ionic.app.min.css
-www/js/ObjectPath.js
-www/js/bootstrap-decorator.min.js
-www/js/schema-form.min.js
-www/js/tv4.js
+www/lib/ObjectPath.js
+www/lib/bootstrap-decorator.min.js
+www/lib/schema-form.min.js
+www/lib/tv4.js

@@ -35,7 +35,7 @@ gulp.task('sass', function(done) {
 gulp.task('vendors', function() {
   gulp
     .src(paths.vendors)
-    .pipe(gulp.dest('./www/js/'));
+    .pipe(gulp.dest('./www/lib/'));
 })
 
 gulp.task('watch', function() {
