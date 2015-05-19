@@ -1,6 +1,12 @@
 angular.module('mobileformapp', ['ionic','schemaForm'])
 
 	.controller('FormController', function($http, $scope) {
+		// Config
+		var url;
+		$http.get('config.json')
+			.success(function(data, status, headers, config) {
+				url = data.url;
+			});
 		// Schema
 		$scope.schema = {};
 		$http.get('mock_schema.json')
@@ -19,7 +25,13 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		$scope.onSubmit = function(form) {
 			$scope.$broadcast('schemaFormValidate');
 			if (form.$valid) {
-				alert('Valid data :)');
+				$http.post(url,$scope.model)
+					.success(function(data, status, headers, config) {
+						alert('Data sent :)');
+					})
+					.error(function(data, status, headers, config) {
+						alert('Error data sending :(');
+					});
 			} else {
 				alert('Invalid data :(');
 			}
