@@ -3,7 +3,7 @@ var gulp = require("gulp");
 var osTask = require("../config").osTask;
 
 // Default install tasks
-var tasks = ["bower-install","default"];
+var tasks = ["bower-install"];
 var nbTasks = tasks.length;
 
 // Add the corresponding tasks to os passed as parameters
@@ -37,7 +37,7 @@ if(tasks.length == nbTasks) { // No task added
 }
 
 // Tasks after os task init
-// tasks.push()
+tasks.push("default")
 
 // Install task
 gulp.task("install", tasks);
