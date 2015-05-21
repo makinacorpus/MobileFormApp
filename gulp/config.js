@@ -1,6 +1,10 @@
 var bower_components = "./bower_components"
 
 module.exports = {
+	osTask: {
+		"android": "android-init",
+		"ios": "ios-init"
+	},
 	vendors: {
 		src: [
 			bower_components + "/ionic/js/ionic.bundle.js",
