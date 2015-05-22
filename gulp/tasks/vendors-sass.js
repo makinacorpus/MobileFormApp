@@ -4,7 +4,7 @@ var concat = require("gulp-concat");
 var minifyCss = require("gulp-minify-css");
 var sourcemaps = require("gulp-sourcemaps");
 
-var config = require("../config").sass;
+var config = require("../config").vendors.sass;
 
 gulp.task("vendors-sass", ["bower-install"], function() {
 	return gulp

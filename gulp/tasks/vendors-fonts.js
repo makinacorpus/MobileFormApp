@@ -1,5 +1,5 @@
 var gulp = require("gulp");
-var config = require("../config").fonts;
+var config = require("../config").vendors.fonts;
 
 gulp.task("vendors-fonts", ["bower-install"], function() {
 	return gulp
