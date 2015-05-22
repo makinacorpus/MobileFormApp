@@ -18,15 +18,9 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.device",
-    "com.ionic.keyboard",
-    "org.apache.cordova.console",
     {
       "locator": "https://github.com/apache/cordova-plugin-whitelist",
       "id": "cordova-plugin-whitelist"
     }
-  ],
-  "cordovaPlatforms": [
-    "android"
   ]
 }
