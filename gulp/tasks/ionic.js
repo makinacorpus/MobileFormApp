@@ -6,13 +6,13 @@ gulp.task("ionic", ["bower-install"], function() {
 	if(process.argv.indexOf("--os") > 0) {
 		var os = process.argv[process.argv.indexOf("--os")+1]
 		if(os == "all") {
-			sh.exec("ionic platform add android");
-			sh.exec("ionic platform add ios");
+			sh.exec("ionic platform add android --nosave");
+			sh.exec("ionic platform add ios --nosave");
 		} else {
-			sh.exec("ionic platform add "+ os);
+			sh.exec("ionic platform add "+ os +" --nosave");
 		}
 	} else {
-		sh.exec("ionic platform add android");
+		sh.exec("ionic platform add android --nosave");
 	}
 
 	// Plugins
