@@ -1,3 +1,3 @@
 var gulp = require("gulp");
 
-gulp.task("default", ["vendors","sass","fonts"]);
+gulp.task("default", ["install"]);

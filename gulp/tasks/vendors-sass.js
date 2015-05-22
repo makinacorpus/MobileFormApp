@@ -6,7 +6,7 @@ var sourcemaps = require("gulp-sourcemaps");
 
 var config = require("../config").sass;
 
-gulp.task("sass", function() {
+gulp.task("vendors-sass", ["bower-install"], function() {
 	return gulp
 		.src(config.src)
 		.pipe(sourcemaps.init())
