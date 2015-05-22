@@ -6,6 +6,7 @@ plugins
 node_modules
 bower_components
 
+www/config.json
 www/fonts
 www/css/style-vendors.css
 www/css/style-vendors.css.map
