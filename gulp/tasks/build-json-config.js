@@ -5,7 +5,7 @@ var jeditor = require("gulp-json-editor");
 
 var config = require("../config").MobileFormApp.config;
 
-gulp.task("build-config", function() {
+gulp.task("build-json-config", function() {
 	// json config file
 	sh.exec("rm "+ config.src);
 	var writer = new SimpleFileWriter(config.src);

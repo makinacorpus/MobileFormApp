@@ -1,3 +1,3 @@
 var gulp = require("gulp");
 
-gulp.task("install", ["ionic", "vendors","build-config"]);
+gulp.task("install", ["ionic", "vendors","build-json-config"]);
