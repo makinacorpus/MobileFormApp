@@ -1,13 +1,14 @@
 var bower_components = "./bower_components"
 
 module.exports = {
-  MobileFormApp: {
-    config: {
-      src: "./www/config.json",
-      dest: "./www/",
-      default_url: "http://192.168.100.73:8000/v1/models/asf/records"
-    }
-  },
+	MobileFormApp: {
+		config: {
+			src: "./www/config.json",
+			dest: "./www/",
+			default_url: "http://192.168.100.73:8000/v1/models/asf",
+			records_suffix: "/records"
+		}
+	},
 	vendors: {
 		js: {
 			src: [

@@ -5,7 +5,7 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		var url;
 		$http.get('config.json')
 			.success(function(data, status, headers, config) {
-				url = data.url;
+				url = data.url + data.suffix;
 			});
 		// Schema
 		$scope.schema = {};

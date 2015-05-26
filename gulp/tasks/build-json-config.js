@@ -23,5 +23,6 @@ gulp.task("build-json-config", function() {
 	return gulp
 		.src(config.src)
 		.pipe(jeditor({'url': url}))
+		.pipe(jeditor({'suffix': config.records_suffix}))
 		.pipe(gulp.dest(config.dest));
 });
