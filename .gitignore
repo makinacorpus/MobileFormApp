@@ -6,6 +6,10 @@ plugins
 node_modules
 bower_components
 
+resources
+!resources/icon.png
+!resources/splash.png
+
 www/config.json
 www/fonts
 www/css/style-vendors.css
