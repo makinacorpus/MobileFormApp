@@ -21,5 +21,5 @@ gulp.task("build-config", ["build-json-config"],function(done) {
 		}
 	})
 
-  done();
+	done();
 });
