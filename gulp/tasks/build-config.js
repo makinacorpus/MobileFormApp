@@ -11,7 +11,7 @@ gulp.task("build-config", ["build-json-config"],function(done) {
 	request(daybedURL, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var formDefinition = JSON.parse(body).definition;
-			return gulp
+			gulp
 				.src("./config.xml")
 				.pipe(xeditor([
 					{ path: '//xmlns:name', text: formDefinition.title },
@@ -20,4 +20,6 @@ gulp.task("build-config", ["build-json-config"],function(done) {
 				.pipe(gulp.dest("./"));
 		}
 	})
+
+  done();
 });
