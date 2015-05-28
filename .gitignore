@@ -1,11 +1,11 @@
 .DS_Store
 Desktop.ini
 
-platforms
-plugins
 node_modules
 bower_components
 
+plugins
+platforms
 resources
 !resources/icon.png
 !resources/splash.png

@@ -14,7 +14,7 @@ gulp.task("build-config", ["build-json-config"],function(done) {
 			return gulp
 				.src("./config.xml")
 				.pipe(xeditor([
-					{path: '//xmlns:name', text: formDefinition.title},
+					{ path: '//xmlns:name', text: formDefinition.title },
 					{ path: '//xmlns:description', text: formDefinition.description }
 				], 'http://www.w3.org/ns/widgets'))
 				.pipe(gulp.dest("./"));
