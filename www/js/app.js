@@ -9,45 +9,69 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		function daybedToAngularSchemaForm(field, schema, form) {
 			var fieldSchema = {}
 			var fieldForm = {};
-			console.log(field);
-
 			// ASF Schema
 			fieldSchema.title = field.label;
 			switch(field.type) {
+				case "group":
+					fieldForm.type = "fieldset";
+					fieldForm.items = [];
+					field.fields.forEach(function(fieldInFieldset) {
+						var temp = daybedToAngularSchemaForm(fieldInFieldset, {"properties": {}, "required": []}, []);
+						fieldForm.items.push(temp.form[0]);
+						schema.properties[fieldInFieldset.name] = temp.schema.properties[fieldInFieldset.name];
+						if(fieldInFieldset.required === true) { schema.required.push(fieldInFieldset.name); }
+					});
+					break;
+				case "enum":
+					fieldSchema.type = "string";
+					fieldSchema.enum = field.choices;
+					fieldForm.key = field.name;
+					break;
+				case "choices":
+					fieldSchema.type = "array";
+					fieldSchema.items = {
+						"type": "string",
+						"enum": field.choices
+					};
+					fieldForm.key = field.name;
+					break;
 				case "int":
 					fieldSchema.type = "integer";
+					fieldForm.key = field.name;
 					break;
 				case "decimal":
 					fieldSchema.type = "number";
+					fieldForm.key = field.name;
 					break;
 				case "boolean":
 					fieldSchema.type = "boolean";
+					fieldForm.key = field.name;
 					break;
 				case "email":
 					fieldSchema.type = "string";
 					fieldSchema.pattern = "^\\S+@\\S+$";
+					fieldForm.key = field.name;
 					break;
 				case "text":
 					fieldSchema.type = "string";
+					fieldForm.key = field.name;
+					fieldForm.type = "textarea";
 					break;
 				default:
 					fieldSchema.type = "string";
+					fieldForm.key = field.name;
 			}
-			if(field.required === true) {
+			if(field.hint) { // help text (optional)
+				fieldForm.placeholder = field.hint
+			};
+			if(field.required === true) { // mandatory attribute
 				schema.required.push(field.name);
 			}
 
-			// ASF Form
-			fieldForm.key = field.name;
-			switch(field.type) {
-				case "text":
-					fieldForm.type = "textarea";
-					break;
-			}
-			if(field.hint) { fieldForm.placeholder = field.hint};
-
 			// Return
-			schema.properties[field.name] = fieldSchema;
+			if(field.name) { // Angular Schema Form fieldset have not schema & Daybed group has not name
+				schema.properties[field.name] = fieldSchema;
+			}
 			form.push(fieldForm);
 			return { "schema": schema, "form": form };
 		}
@@ -64,6 +88,7 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 						var temp = daybedToAngularSchemaForm(field, $scope.schema, $scope.form);
 						$scope.schema = temp.schema;
 						$scope.form = temp.form;
+						console.log(temp);
 					});
 					// Submit button
 					$scope.form.push({
