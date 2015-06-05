@@ -21,5 +21,5 @@ gulp.task("ionic", ["bower-install"], function() {
 		sh.exec("ionic resources android");
 		sh.exec("ionic platform add android --nosave");
 	}
-  sh.exec("cordova plugin rm org.apache.cordova.core.geolocation");
+  sh.exec("cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-geolocation.git");
 });
