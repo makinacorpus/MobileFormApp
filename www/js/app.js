@@ -77,6 +77,8 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		}
 
 		// Config
+		var getUserPosition = false;
+		var userPositionRequired = false;
 		var submitURL;
 		$http.get('config.json')
 			.success(function(data, status, headers, config) {
@@ -85,10 +87,14 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 				.success(function(data, status, headers, config) {
 					// Fields
 					data.definition.fields.forEach(function(field) {
-						var temp = daybedToAngularSchemaForm(field, $scope.schema, $scope.form);
-						$scope.schema = temp.schema;
-						$scope.form = temp.form;
-						console.log(temp);
+						if(field.type === "point" && field.name === "system_userposition") {
+							getUserPosition = true; // Hidden field & Collected when sending
+							userPositionRequired = field.required;
+						} else {
+							var temp = daybedToAngularSchemaForm(field, $scope.schema, $scope.form);
+							$scope.schema = temp.schema;
+							$scope.form = temp.form;
+						}
 					});
 					// Submit button
 					$scope.form.push({
@@ -103,13 +109,34 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		$scope.onSubmit = function(form) {
 			$scope.$broadcast('schemaFormValidate');
 			if (form.$valid) {
-				$http.post(submitURL,$scope.model)
-					.success(function(data, status, headers, config) {
-						alert('Data sent :)');
-					})
-					.error(function(data, status, headers, config) {
-						alert('Error data sending :( (Error'+ status +')');
-					});
+
+				function send() {
+					$http.post(submitURL,$scope.model)
+						.success(function(data, status, headers, config) {
+							alert('Data sent :)');
+						})
+						.error(function(data, status, headers, config) {
+							alert('Error data sending :( (Error'+ status +')');
+						});
+				}
+
+				if(getUserPosition) {
+					navigator.geolocation.getCurrentPosition(
+						function geolocationSuccess(position) {
+							$scope.model.system_userposition = [position.coords.longitude, position.coords.latitude];
+							send();
+						}, function geolocationError(error) {
+							if(userPositionRequired) {
+								alert('Geolocation Error :(');
+							} else {
+								send();
+							}
+						}, { timeout: 30000 }
+					);
+				} else {
+					send();
+				}
+
 			} else {
 				alert('Invalid data :(');
 			}
