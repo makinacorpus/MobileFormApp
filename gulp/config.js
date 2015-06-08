@@ -6,6 +6,7 @@ module.exports = {
 			src: "./www/config.json",
 			dest: "./www/",
 			default_url: "http://192.168.100.72:8000/v1/models/asf",
+			definition_suffix: "/definition",
 			records_suffix: "/records"
 		}
 	},

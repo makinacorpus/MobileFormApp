@@ -79,14 +79,15 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		// Config
 		var getUserPosition = false;
 		var userPositionRequired = false;
-		var submitURL;
+		var modelDefURL, submitURL;
 		$http.get('config.json')
 			.success(function(data, status, headers, config) {
-				submitURL = data.url+data.suffix;
-				$http.get(data.url)
+				submitURL = data.url+data.recordsSuffix;
+				modelDefURL = data.url+data.definitionSuffix;
+				$http.get(modelDefURL)
 				.success(function(data, status, headers, config) {
 					// Fields
-					data.definition.fields.forEach(function(field) {
+					data.fields.forEach(function(field) {
 						if(field.type === "point" && field.name === "system_userposition") {
 							getUserPosition = true; // Hidden field & Collected when sending
 							userPositionRequired = field.required;
