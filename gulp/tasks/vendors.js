@@ -1,3 +1,3 @@
 var gulp = require("gulp");
 
-gulp.task("vendors", ["vendors-js","vendors-sass","vendors-fonts"]);
+gulp.task("vendors", ["vendors-js","vendors-sass","vendors-copy"]);

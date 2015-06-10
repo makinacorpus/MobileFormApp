@@ -1,4 +1,5 @@
-var bower_components = "./bower_components"
+var bower_components = "./bower_components";
+var node_modules = "./node_modules";
 
 module.exports = {
 	MobileFormApp: {
@@ -28,12 +29,14 @@ module.exports = {
 			],
 			dest: "./www/css/"
 		},
-		fonts: {
-			src: [
-				bower_components + "/ionic/fonts/*",
-				bower_components + "/bootstrap-sass/assets/fonts/bootstrap/*"
-			],
-			dest: "./www/fonts/"
-		}
+		copy: [
+			{	// Fonts
+				src: [
+					bower_components + "/ionic/fonts/*",
+					bower_components + "/bootstrap-sass/assets/fonts/bootstrap/*"
+				],
+				dest: "./www/fonts/"
+			}
+		]
 	}
 }
