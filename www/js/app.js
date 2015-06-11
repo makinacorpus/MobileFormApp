@@ -13,6 +13,7 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 			fieldSchema.title = field.label;
 			switch(field.type) {
 				case "group":
+					fieldForm.title = field.label;
 					fieldForm.type = "fieldset";
 					fieldForm.items = [];
 					field.fields.forEach(function(fieldInFieldset) {
@@ -72,7 +73,6 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 			if(field.required === true) { // mandatory attribute
 				schema.required.push(field.name);
 			}
-
 			// Return
 			if(field.name) { // Angular Schema Form fieldset have not schema & Daybed group has not name
 				schema.properties[field.name] = fieldSchema;
@@ -115,7 +115,6 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 		$scope.onSubmit = function(form) {
 			$scope.$broadcast('schemaFormValidate');
 			if (form.$valid) {
-
 				function send() {
 					$http.post(submitURL,$scope.model)
 						.success(function(data, status, headers, config) {
@@ -125,8 +124,7 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 							alert('Error data sending :( (Error'+ status +')');
 						});
 				}
-
-				if(getUserPosition) {
+				if(getUserPosition) { // Get user position
 					navigator.geolocation.getCurrentPosition(
 						function geolocationSuccess(position) {
 							$scope.model.system_userposition = [position.coords.longitude, position.coords.latitude];
@@ -139,12 +137,12 @@ angular.module('mobileformapp', ['ionic','schemaForm'])
 							}
 						}, { timeout: 30000 }
 					);
-				} else {
+				} else { // Get user position
 					send();
 				}
-
 			} else {
 				alert('Invalid data :(');
 			}
 		};
+		
 	});
